@@ -1,34 +1,45 @@
-options(scipen=999)
-
 library(dplyr)
 library(stringr)
 
 carrega <- function() {
-  landUse <- read.csv("Inputs_LandUse_E_All_Data_NOFLAG.csv", header=TRUE, sep=',')
-  landUse <- landUse |> filter(Area.Code < 5000) |> filter(Item.Code == 6620) |> select (Area, Item, Unit, Y2020)
+  dataset <- read.csv("Inputs_Pesticides_Use_E_All_Data_NOFLAG.csv", header=TRUE, sep=',')
   
-  pesticides <- read.csv("Inputs_Pesticides_Use_E_All_Data_NOFLAG.csv", header=TRUE, sep=',')
-  pesticides <- pesticides |> filter(Area.Code < 5000) |> filter(Item.Code == 1357) |> filter(Area.Code != 41)
-  i <- order(pesticides$Y2020, decreasing = TRUE)
-  pesticides <- pesticides[i,]
-  pesticides <- head(pesticides, 10)
-  pesticides$Area <- str_replace_all(tolower(pesticides$Area), " ", "_")
-  pesticides$Area.Code <- NULL
-  pesticides$Area.Code..M49. <- NULL
-  pesticides$Item.Code <- NULL
-  pesticides$Item <- NULL
-  pesticides$Element.Code <- NULL
-  pesticides$Element <- NULL
-  pesticides$Unit <- NULL
+  #countries: india, japan, canada, usa, china, germany, united kingdom, france, brazil, italy
+  countries <- c(100, 110, 33, 231, 351, 79, 110, 229, 68, 21, 106)
+  
+  data <- dataset %>%
+    filter(Item.Code == 1357) %>%
+    filter(Element.Code == 5157) %>%
+    filter(Area.Code %in% countries) %>%
+    arrange(match(Area.Code, countries))
+  
+  data$Area.Code <- NULL
+  data$Area.Code..M49. <- NULL
+  data$Item.Code <- NULL
+  data$Item <- NULL
+  data$Element.Code <- NULL
+  data$Element <- NULL
+  data$Unit <- NULL
+  
+  data$Area[data$Area == "United States of America"] <- "USA"
+  data$Area[data$Area == "United Kingdom of Great Britain and Northern Ireland"] <- "UK"
+  
+  data$Area <- paste(str_replace_all(tolower(data$Area), " ", "-"), "_pest", sep = "")
   
   dataset <- list()
-  for (i in 1:nrow(pesticides)) {
-    x <- as.vector(t(pesticides[i, 2:ncol(pesticides)]))
-    names(x) <- str_replace(colnames(pesticides)[2:ncol(pesticides)], "Y", "")
+  for (i in 1:nrow(data)) {
+    x <- as.vector(t(data[i, 2:ncol(data)]))
+    names(x) <- str_replace(colnames(data)[2:ncol(data)], "Y", "")
     dataset[[i]] <- x
   }
-  names(dataset) <- pesticides$Area  
+  names(dataset) <- data$Area
+  
   return(dataset)
 }
 
-dataset <- carrega()
+pesticides <- carrega()
+data_dir <- "../../data"
+if (!dir.exists(data_dir))
+  dir.create(data_dir, recursive = TRUE)
+save(pesticides, file = file.path(data_dir, "pesticides.RData"))
+#write.csv(pesticides, file = file.path(data_dir, "pesticides.csv"), row.names = FALSE)

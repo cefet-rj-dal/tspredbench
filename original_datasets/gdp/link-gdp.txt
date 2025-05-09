@@ -1,0 +1,19 @@
+https://www.fao.org/faostat/en/#data/MK
+
+-----------------------------------------------
+Colunas:
+Area Code
+Area Code (M49)
+Area
+Item Code
+Item
+Element Code
+Element
+Unit
+Y1970 - Y2023
+
+Filtros:
+Area code = países...
+Item code = 22008 (Gross Domestic Product)
+Element code: 6110 (Value US$)
+-----------------------------------------------

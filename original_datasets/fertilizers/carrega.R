@@ -1,58 +1,54 @@
-options(scipen=999)
-
 library(dplyr)
 library(stringr)
 
 carrega <- function() {
-  landUse <- read.csv("Inputs_LandUse_E_All_Data_NOFLAG.csv", header=TRUE, sep=',')
-  landUse <- landUse |> filter(Area.Code < 5000) |>  filter(Item.Code == 6620)
-  landUse$Area.Code..M49. <- NULL
-  landUse$Item.Code <- NULL
-  landUse$Element.Code <- NULL
+  dataset <- read.csv("Inputs_FertilizersNutrient_E_All_Data_NOFLAG.csv", header=TRUE, sep=',')
   
-  fertilizers <- read.csv("Environment_Fertilizers_E_All_Data_NOFLAG.csv", header=TRUE, sep=',')
-  fertilizers <- fertilizers |> filter(Element.Code == 5159) |> filter(Area.Code != 41) |> filter(Area.Code != 185)
-  fertilizers$Area.Code..M49. <- NULL
-  fertilizers$Item.Code <- NULL
-  fertilizers$Element.Code <- NULL
+  #countries: usa, china, germany, japan, india, united kingdom, france, brazil, italy, canada
+  countries <- c(231, 351, 79, 110, 100, 229, 68, 21, 106, 33)
   
-  data <- merge(fertilizers, landUse, by.x = "Area.Code", by.y = "Area.Code")
+  data <- dataset %>%
+    filter(Element.Code == 5159) %>%
+    filter(Area.Code %in% countries) %>%
+    arrange(match(Area.Code, countries))
   
-  sF <- which(colnames(data) == "Y1961.x")
-  eF <- which(colnames(data) == "Y2020.x")
+  data$Area.Code <- NULL
+  data$Area.Code..M49. <- NULL
+  data$Item.Code <- NULL
+  data$Element.Code <- NULL
+  data$Element <- NULL
+  data$Unit <- NULL
   
-  sL <- which(colnames(data) == "Y1961.y")
+  data$Area[data$Area == "United States of America"] <- "USA"
+  data$Area[data$Area == "United Kingdom of Great Britain and Northern Ireland"] <- "UK"
   
-  for (i in sF:eF) {
-    data[,i] <- data[,i] * data[, sL + i - sF] / 1000
-  }
+  data <- data %>%
+    mutate(
+      Item = case_when(
+        str_detect(Item, "Nutrient nitrogen N \\(total\\)") ~ "N",
+        str_detect(Item, "Nutrient phosphate P2O5 \\(total\\)") ~ "P2O5",
+        str_detect(Item, "Nutrient potash K2O \\(total\\)") ~ "K2O",
+        TRUE ~ str_replace_all(Item, "Nutrient potash | \\(total\\)", "")
+      ),
+      Area = tolower(sprintf("%s_%s", str_replace_all(Area, " ", ""), Item))
+    )
   
-  data <- data[,-((ncol(fertilizers)+1):ncol(data))]
-  colnames(data) <- colnames(fertilizers)
-  
-  consumption <- data |> group_by(Area.Code, Area) |> summarise(Y2020 = sum(Y2020))
-  i <- order(consumption$Y2020, decreasing = TRUE)
-  consumption <- consumption[i, ] 
-  consumption <- head(consumption, 10)
-  consumption$rank <- 1:nrow(consumption)
-  
-  rank <- consumption |> select(Area.Code, rank)
-  
-  fertilizers <- merge(fertilizers, rank, by="Area.Code")
-  fertilizers <- fertilizers[order(fertilizers$rank, fertilizers$Item), ]
-  fertilizers$Item[fertilizers$Item == "Nutrient nitrogen N (total)"] <- "N"
-  fertilizers$Item[fertilizers$Item == "Nutrient phosphate P2O5 (total)"] <- "P2O5"
-  fertilizers$Item[fertilizers$Item == "Nutrient potash K2O (total)"] <- "K2O"
-  fertilizers$rank <- NULL
+  data$Item <- NULL
   
   dataset <- list()
-  for (i in 1:nrow(fertilizers)) {
-    x <- as.vector(t(fertilizers[i, 6:ncol(fertilizers)]))
-    names(x) <- str_replace(colnames(fertilizers)[6:ncol(fertilizers)], "Y", "")
+  for (i in 1:nrow(data)) {
+    x <- as.vector(t(data[i, 2:ncol(data)]))
+    names(x) <- str_replace(colnames(data)[2:ncol(data)], "Y", "")
     dataset[[i]] <- x
   }
-  names(dataset) <- tolower(sprintf("%s_%s", str_replace_all(fertilizers$Area, " ", "_"), fertilizers$Item)) 
+  names(dataset) <- data$Area
+  
   return(dataset)
 }
 
-dataset <- carrega()
+fertilizers <- carrega()
+data_dir <- "../../data"
+if (!dir.exists(data_dir))
+  dir.create(data_dir, recursive = TRUE)
+save(fertilizers, file = file.path(data_dir, "fertilizers.RData"))
+#write.csv(fertilizers, file = file.path(data_dir, "fertilizers.csv"), row.names = FALSE)

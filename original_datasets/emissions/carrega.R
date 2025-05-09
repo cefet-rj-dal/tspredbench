@@ -1,47 +1,72 @@
-options(scipen=999)
-
 library(dplyr)
 library(stringr)
 
-carrega <- function() {
-  dataset <- read.table("Environment_Emissions_by_Sector_E_All_Data_NOFLAG.csv", header=TRUE, sep=",")
-  y <- dataset |> dplyr::filter((Element == "CO2 emissions") | (Element == "N2O emissions") | (Element == "CH4 emissions")) |>
-    dplyr::filter((Item == "Total emissions with agricultural land use")) |> 
-    dplyr::filter(Area.Code < 5000) |> 
-    dplyr::filter((Area != "China, mainland") & (Area != "China, Taiwan Province of"))
+carrega <- function(co2 = FALSE) {
+  dataset <- read.table("Emissions_Totals_E_All_Data_NOFLAG.csv", header=TRUE, sep=",")
   
+  #countries: usa, china, germany, japan, india, united kingdom, france, brazil, italy, canada
+  countries <- c(231, 351, 79, 110, 100, 229, 68, 21, 106, 33)
   
-  z <- y |> dplyr::select(Area, Item, Element, Y2017) |> group_by(Area) |> summarise(emission = sum(Y2017, na.rm=TRUE))
-  z <- z[order(z$emission, decreasing = TRUE), ]
-  z <- head(z, 10)
-  countries <- z$Area
+  data <- dataset %>%
+    filter((Element == "Emissions (CO2)") | (Element == "Emissions (CH4)") | (Element == "Emissions (N2O)")) %>%
+    filter(Item == "All sectors with LULUCF") %>%
+    filter(Area.Code %in% countries) %>%
+    arrange(match(Area.Code, countries))
   
-  z <- y |> dplyr::filter(Area %in% countries)
+  data$Area.Code <- NULL
+  data$Area.Code..M49. <- NULL
+  data$Item.Code <- NULL
+  data$Item <- NULL
+  data$Element.Code <- NULL
+  data$Source.Code <- NULL
+  data$Source <- NULL
+  data$Unit <- NULL
+  data$Y2030 <- NULL
+  data$Y2050 <- NULL
   
-  z$Area[z$Area == "Iran (Islamic Republic of)"] <- "Iran"
-  z$Area[z$Area == "Russian Federation"] <- "Russia"
-  z$Area[z$Area == "United States of America"] <- "USA"
+  data$Area[data$Area == "United States of America"] <- "USA"
+  data$Area[data$Area == "United Kingdom of Great Britain and Northern Ireland"] <- "UK"
   
+  data <- data %>%
+    mutate(
+      Element = case_when(
+        str_detect(Element, "Emissions \\(CO2\\)") ~ "CO2",
+        str_detect(Element, "Emissions \\(CH4\\)") ~ "CH4",
+        str_detect(Element, "Emissions \\(N2O\\)") ~ "N2O",
+        TRUE ~ str_replace_all(Element, "Emissions \\(|\\)", "")
+      ),
+      Area = tolower(sprintf("%s_%s", str_replace_all(Area, " ", ""), Element))
+    )
   
-  
-  z$Area <- tolower(sprintf("%s_%s", str_replace_all(z$Area, " ", ""), str_replace(z$Element, " emissions", "")))
-  z$Area.Code <- NULL
-  z$Item.Code <- NULL
-  z$Element.Code <- NULL
-  z$Item <- NULL
-  z$Element <- NULL
-  z$Unit <- NULL
-  
-  
-  dataset <- list()
-  for (i in 1:nrow(z)) {
-    x <- as.vector(t(z[i, 2:ncol(z)]))
-    names(x) <- str_replace(colnames(z)[2:ncol(z)], "Y", "")
-    dataset[[i]] <- x
+  if (co2) {
+    data <- data %>%
+      filter(Element == "CO2") %>%
+      select(Area, matches("^Y(1990|199[1-9]|200[0-9]|201[0-9]|2020|2021)$"))
+  } else {
+    data <- data %>%
+      filter(Element == "CH4" | Element == "N2O")
+    data$Element <- NULL
   }
   
-  names(dataset) <- z$Area
-  return(dataset)  
+  dataset <- list()
+  for (i in 1:nrow(data)) {
+    x <- as.vector(t(data[i, 2:ncol(data)]))
+    names(x) <- str_replace(colnames(data)[2:ncol(data)], "Y", "")
+    dataset[[i]] <- x
+  }
+  names(dataset) <- data$Area
+  
+  return(dataset) 
 }
 
-dataset <- carrega()
+emissions <- carrega()
+data_dir <- "../../data"
+if (!dir.exists(data_dir))
+  dir.create(data_dir, recursive = TRUE)
+save(emissions, file = file.path(data_dir, "emissions.RData"))
+#write.csv(emissions, file = file.path(data_dir, "emissions.csv"), row.names = FALSE)
+
+emissions <- carrega(co2=TRUE)
+save(emissions, file = file.path(data_dir, "emissions-co2.RData"))
+#write.csv(emissions, file = file.path(data_dir, "emissions-co2.csv"), row.names = FALSE)
+
