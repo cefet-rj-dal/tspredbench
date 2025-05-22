@@ -127,3 +127,190 @@
 #' data(fertilizers)
 #' serie <- fertilizers[[1]]
 "fertilizers"
+
+#' @name gdp
+#' @title Gross Domestic Product and Agriculture Value Added (2013–2022)
+#' @description 
+#' Analytical summary of global and regional trends in GDP and agriculture value added between 2013 and 2022. 
+#' This dataset provides insights into macroeconomic indicators, such as GDP growth rates, investment trends, 
+#' and the contribution of agriculture to national and regional economies. 
+#' All values are measured in 2015 constant USD.
+#'
+#' Key highlights:
+#' - Global GDP grew from USD 70.5 trillion in 2013 to USD 89.5 trillion in 2022.
+#' - Agriculture value added increased from USD 3.0 trillion to USD 3.8 trillion in the same period.
+#' - Asia led global growth in both GDP and agricultural value added.
+#' - Data includes average growth rates by decade and per region.
+#'
+#' @docType data
+#' @usage data(gdp)
+#' @format A data.frame or list of time series covering GDP and agricultural metrics by region and year.
+#' @keywords datasets
+#'
+#' @references 
+#' FAO. 2024. Gross domestic product and agriculture value added 2013–2022 – Global and regional trends. 
+#' FAOSTAT Analytical Briefs, No. 85. Rome. \href{https://doi.org/10.4060/cd0763en}{https://doi.org/10.4060/cd0763en}
+#'
+#' @source \href{http://www.fao.org/faostat/en/#data/MK}{FAOSTAT Macro Indicators Database}
+#'
+#' @examples
+#' data(gdp)
+#' head(gdp)
+"gdp"
+
+#' @name pesticides
+#' @title Pesticides Use Statistics (1990–2022)
+#' @description 
+#' The FAOSTAT Pesticides Use domain contains annual statistics on the agricultural use 
+#' of major pesticide groups and relevant chemical families from 1990 to 2022. 
+#' Data is reported by country and includes metrics such as total pesticide use, 
+#' use per cropland area, per capita, and per agricultural production value. 
+#'
+#' Main pesticide groups:
+#' - Insecticides (e.g., organophosphates, carbamates, pyrethroids)
+#' - Herbicides (e.g., triazines, amides, ureas)
+#' - Fungicides and Bactericides (e.g., benzimidazoles, triazoles, biologicals)
+#' - Plant Growth Regulators, Rodenticides, Mineral Oils, and Others NES
+#'
+#' Indicators calculated:
+#' - Use per area of cropland (kg/ha)
+#' - Use per capita (kg/person)
+#' - Use per value of agricultural production (kg per 1000 I$)
+#'
+#' Data coverage: 176 countries and territories.
+#' Methodologies include data conversion, imputation, and proxy use for non-reporting countries.
+#' Units: Metric tonnes of active ingredients.
+#'
+#' @docType data
+#' @usage data(pesticides)
+#' @format A list or data.frame containing time series data by country, year, pesticide group, and derived indicators.
+#' @keywords datasets
+#'
+#' @references 
+#' FAO. 2024. FAOSTAT: Pesticides Use. RP_e_README_Domain_Information_2024. 
+#' \href{http://www.fao.org/faostat/en/#data/RP}{FAOSTAT Pesticides Use Database}
+#'
+#' @source \href{http://www.fao.org/faostat/en/#data/RP}{http://www.fao.org/faostat/en/#data/RP}
+#'
+#' @examples
+#' data(pesticides)
+#' head(pesticides)
+#' summary(pesticides$Use_per_area)
+"pesticides"
+
+#' @name m1
+#' @title M1 Forecasting Competition Time Series (Quarterly)
+#' @description 
+#' This dataset contains 203 quarterly time series used in the M1 forecasting competition.
+#' The series span multiple domains, including macroeconomics, microeconomics, industry, and demographics.
+#' Each series is labeled and begins at a specific timestamp, with varying lengths.
+#' Some series contain synthetic date placeholders (e.g., 00-01) due to missing original values.
+#'
+#' Key features:
+#' - Frequency: Quarterly
+#' - Number of series: 203
+#' - Domains: Macro 1, Macro 2, Micro 1, Micro 2, Micro 3, Industry, Demographic
+#' - Each time series is labeled (e.g., T1, T2, ...)
+#' - Data used in time series forecasting benchmarks
+#'
+#' Notes:
+#' - For three series (T36, T37, T42), the year/month were partially missing and filled with '00-01'.
+#' - Series are not of equal length.
+#'
+#' @docType data
+#' @usage data(m1)
+#' @format A list or data.frame containing:
+#' \describe{
+#'   \item{series_name}{Name of the time series (e.g., T1, T2, ...)}
+#'   \item{start_timestamp}{Starting date of the series (format: yyyy-mm-dd)}
+#'   \item{values}{A numeric vector of observations}
+#' }
+#' @keywords datasets time-series forecasting
+#'
+#' @references 
+#' Makridakis, S. et al. (1982). The accuracy of extrapolation (time series) methods:
+#' Results of a forecasting competition. *Journal of Forecasting*, 1(2), 111–153.
+#'
+#' @source \href{https://www.spotseven.de/gecco/gecco-challenge}{Gecco Challenge 2018}
+#'
+#' @examples
+#' data(m1)
+#' head(m1[[1]])
+#' ts.plot(m1[[1]]$values)
+"m1"
+
+#' @name m3
+#' @title M3 Forecasting Competition Time Series (Quarterly)
+#' @description 
+#' This dataset contains 756 quarterly time series used in the M3 forecasting competition.
+#' The series belong to five domains: demographic, micro, macro, industry, and finance.
+#' Each series includes a start timestamp and a sequence of numeric values, typically representing economic or industrial indicators.
+#'
+#' Key features:
+#' - Frequency: Quarterly
+#' - Number of series: 756
+#' - Domains: Demographic, Micro, Macro, Industry, Finance
+#' - Each time series is labeled (e.g., T1, T2, ...)
+#' - Data used in time series forecasting benchmarks
+#'
+#' Notes:
+#' - The time series start in various years and quarters.
+#' - Series vary in length and are not necessarily of equal size.
+#'
+#' @docType data
+#' @usage data(m3)
+#' @format A list or data.frame containing:
+#' \describe{
+#'   \item{series_name}{Name of the time series (e.g., T1, T2, ...)}
+#'   \item{start_timestamp}{Starting date of the series (format: yyyy-mm-dd)}
+#'   \item{values}{A numeric vector of observations}
+#' }
+#' @keywords datasets time-series forecasting
+#'
+#' @references 
+#' Makridakis, S. and Hibon, M. (2000). The M3-Competition: Results, Conclusions and Implications. 
+#' *International Journal of Forecasting*, 16(4), 451–476.
+#'
+#' @source \href{https://forecasters.org/resources/time-series-data/m3-competition/}{M3 Forecasting Competition}
+#'
+#' @examples
+#' data(m3)
+#' head(m3[[1]])
+#' ts.plot(m3[[1]]$values)
+"m3"
+
+#' @name m4
+#' @title M4 Forecasting Competition Dataset
+#' @description 
+#' O conjunto de dados da competição M4 contém 100.000 séries temporais reais, abrangendo seis frequências: anual, trimestral, mensal, semanal, diária e horária. As séries são categorizadas em seis domínios: Micro, Indústria, Macro, Finanças, Demografia e Outros. Cada série inclui um identificador único, frequência, data de início, horizonte de previsão e valores históricos.
+#'
+#' Características principais:
+#' - Frequências: Anual, Trimestral, Mensal, Semanal, Diária, Horária
+#' - Domínios: Micro, Indústria, Macro, Finanças, Demografia, Outros
+#' - Total de séries: 100.000
+#' - Horizonte de previsão varia conforme a frequência da série
+#'
+#' @docType data
+#' @usage data(m4)
+#' @format Um data.frame com as seguintes colunas:
+#' \describe{
+#'   \item{M4id}{Identificador único da série}
+#'   \item{Frequency}{Frequência da série (e.g., "Yearly", "Quarterly")}
+#'   \item{StartingDate}{Data de início da série}
+#'   \item{Horizon}{Número de períodos a serem previstos}
+#'   \item{Domain}{Domínio da série (e.g., "Macro", "Finance")}
+#'   \item{Values}{Vetor numérico com os valores históricos da série}
+#' }
+#' @keywords datasets time-series forecasting
+#'
+#' @references 
+#' Makridakis, S., Spiliotis, E., & Assimakopoulos, V. (2020). The M4 Competition: 100,000 time series and 61 forecasting methods. *International Journal of Forecasting*, 36(1), 54–74.
+#'
+#' @source \href{https://github.com/Mcompetitions/M4-methods}{Repositório M4-methods no GitHub}
+#'
+#' @examples
+#' data(m4)
+#' head(m4)
+#' plot(ts(m4$Values[[1]], frequency = 12))
+"m4"
+
