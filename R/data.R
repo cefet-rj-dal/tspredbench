@@ -131,20 +131,16 @@
 #' @name gdp
 #' @title Gross Domestic Product and Agriculture Value Added (2013–2022)
 #' @description 
-#' Analytical summary of global and regional trends in GDP and agriculture value added between 2013 and 2022. 
-#' This dataset provides insights into macroeconomic indicators, such as GDP growth rates, investment trends, 
-#' and the contribution of agriculture to national and regional economies. 
-#' All values are measured in 2015 constant USD.
-#'
-#' Key highlights:
-#' - Global GDP grew from USD 70.5 trillion in 2013 to USD 89.5 trillion in 2022.
-#' - Agriculture value added increased from USD 3.0 trillion to USD 3.8 trillion in the same period.
-#' - Asia led global growth in both GDP and agricultural value added.
-#' - Data includes average growth rates by decade and per region.
+#' Summary of global and regional trends in GDP and agriculture value.
+#' Data Type:macroeconomic indicators. Category:	Economy. Creation Date	2024.
+#'     See \href{https://github.com/cefet-rj-dal/event_datasets}{cefet-rj-dal/event_datasets}
+#'     for detailed guidance on using this package and the other datasets available in it.
+#'     Labels available? Yes
+#' 
 #'
 #' @docType data
 #' @usage data(gdp)
-#' @format A data.frame or list of time series covering GDP and agricultural metrics by region and year.
+#' @format list of time series.
 #' @keywords datasets
 #'
 #' @references 
@@ -155,35 +151,21 @@
 #'
 #' @examples
 #' data(gdp)
-#' head(gdp)
+#' serie <- gdp[[1]]
 "gdp"
 
 #' @name pesticides
 #' @title Pesticides Use Statistics (1990–2022)
-#' @description 
-#' The FAOSTAT Pesticides Use domain contains annual statistics on the agricultural use 
-#' of major pesticide groups and relevant chemical families from 1990 to 2022. 
-#' Data is reported by country and includes metrics such as total pesticide use, 
-#' use per cropland area, per capita, and per agricultural production value. 
-#'
-#' Main pesticide groups:
-#' - Insecticides (e.g., organophosphates, carbamates, pyrethroids)
-#' - Herbicides (e.g., triazines, amides, ureas)
-#' - Fungicides and Bactericides (e.g., benzimidazoles, triazoles, biologicals)
-#' - Plant Growth Regulators, Rodenticides, Mineral Oils, and Others NES
-#'
-#' Indicators calculated:
-#' - Use per area of cropland (kg/ha)
-#' - Use per capita (kg/person)
-#' - Use per value of agricultural production (kg per 1000 I$)
-#'
-#' Data coverage: 176 countries and territories.
-#' Methodologies include data conversion, imputation, and proxy use for non-reporting countries.
-#' Units: Metric tonnes of active ingredients.
+#' @description
+#' Statistics on the use of major pesticide groups and relevant chemical families.
+#' Data Type: pesticides use. Category:	Environments. Creation Date	2024.
+#'     See \href{https://github.com/cefet-rj-dal/event_datasets}{cefet-rj-dal/event_datasets}
+#'     for detailed guidance on using this package and the other datasets available in it.
+#'     Labels available? Yes
 #'
 #' @docType data
 #' @usage data(pesticides)
-#' @format A list or data.frame containing time series data by country, year, pesticide group, and derived indicators.
+#' @format A list of time series.
 #' @keywords datasets
 #'
 #' @references 
@@ -194,13 +176,13 @@
 #'
 #' @examples
 #' data(pesticides)
-#' head(pesticides)
-#' summary(pesticides$Use_per_area)
+#' serie <- pesticides[[1]]
 "pesticides"
 
 #' @name m1
 #' @title M1 Forecasting Competition Time Series (Quarterly)
-#' @description 
+#' @description
+#' 
 #' This dataset contains 203 quarterly time series used in the M1 forecasting competition.
 #' The series span multiple domains, including macroeconomics, microeconomics, industry, and demographics.
 #' Each series is labeled and begins at a specific timestamp, with varying lengths.
@@ -219,12 +201,7 @@
 #'
 #' @docType data
 #' @usage data(m1)
-#' @format A list or data.frame containing:
-#' \describe{
-#'   \item{series_name}{Name of the time series (e.g., T1, T2, ...)}
-#'   \item{start_timestamp}{Starting date of the series (format: yyyy-mm-dd)}
-#'   \item{values}{A numeric vector of observations}
-#' }
+#' @format A list of time series
 #' @keywords datasets time-series forecasting
 #'
 #' @references 
