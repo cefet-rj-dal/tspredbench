@@ -1,5 +1,5 @@
-Package: dalevents
-Title: DAL Events Datasets
+Package: dalts
+Title: DAL Time Series
 Version: 1.0.707
 License: MIT + file LICENSE
 Authors@R: 
@@ -19,3 +19,5 @@ LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.1.0)
 RoxygenNote: 7.3.2
+Imports: 
+  daltoolbox
