@@ -1,0 +1,71 @@
+---
+title: "M3 Competition Time Series"
+output: html_notebook
+---
+Time series data from the third Makridakis forecasting competition (M3), held in 2000.
+
+Source: https://onlinelibrary.wiley.com/doi/10.1002/for.3980010202
+
+##Load series
+
+```{r}
+library(dalts)
+library(daltoolbox)
+library(harbinger)
+library(tspredit)
+
+## Load series ----------------------
+data(m3)
+head(m3$monthly, 5)
+```
+
+```{r}
+serie <- m3$monthly$M1111
+serie
+```
+
+
+
+```{r}
+
+values <- as.numeric(serie)
+num_points <- length(values)
+years <- 1:num_points
+years
+
+plot(years, values, type = "l", main = "M3 Series", ylab = "Value", xlab = "V")
+
+```
+```{r}
+# Create object ts_data with horizon = 1
+ts <- ts_data(values, sw = 1)
+
+# Separate Training and Test samples
+samp <- ts_sample(ts, test_size = 5)
+
+#  Input/output projection
+io_train <- ts_projection(samp$train)
+io_test <- ts_projection(samp$test)
+```
+
+```{r}
+# Create ARIMA and train
+model <- ts_arima()
+model <- fit(model, x = io_train$input, y = io_train$output)
+
+
+```
+
+```{r}
+# Predicting next 5 years
+prediction <- predict(model, x = io_test$input[1,], steps_ahead = 5)
+
+# Converting to vector
+pred <- as.vector(prediction)
+real <- as.vector(io_test$output)
+
+# Evaluate
+ev_test <- evaluate(model, real, pred)
+ev_test
+```
+

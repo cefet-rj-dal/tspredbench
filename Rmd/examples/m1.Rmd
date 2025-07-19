@@ -1,0 +1,73 @@
+---
+title: "M1 Competition Time Series"
+output: html_notebook
+---
+Time series data from the first Makridakis forecasting competition (M1), held in 1982.
+
+Source: https://onlinelibrary.wiley.com/doi/10.1002/for.3980010202
+
+##Load series
+
+```{r}
+library(dalts)
+library(daltoolbox)
+library(harbinger)
+library(tspredit)
+
+## Load series ----------------------
+data(m1)
+head(m1$monthly, 5)
+```
+
+```{r}
+serie <- m1$monthly
+head(serie, 5)
+```
+
+
+```{r}
+years <- as.numeric(gsub("V", "", colnames(serie)))
+
+values <- as.numeric(serie[2, ])
+
+#removing nan values
+values <- na.omit(values)
+num_points <- length(values)
+years <- 1:num_points
+
+plot(years, values, type = "l", main = "M1 Series", ylab = "Value", xlab = "V")
+
+```
+```{r}
+# Create object ts_data with horizon = 1
+ts <- ts_data(values, sw = 1)
+
+# Separate Training and Test samples
+samp <- ts_sample(ts, test_size = 5)
+
+#  Input/output projection
+io_train <- ts_projection(samp$train)
+io_test <- ts_projection(samp$test)
+```
+
+```{r}
+# Create ARIMA and train
+model <- ts_arima()
+model <- fit(model, x = io_train$input, y = io_train$output)
+
+```
+
+```{r}
+
+# Predicting next 5 years
+prediction <- predict(model, x = io_test$input[1,], steps_ahead = 5)
+
+# Converting to vector
+pred <- as.vector(prediction)
+real <- as.vector(io_test$output)
+
+# Evaluate
+ev_test <- evaluate(model, real, pred)
+ev_test
+```
+

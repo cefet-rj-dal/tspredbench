@@ -1,0 +1,67 @@
+---
+title: "IBOVESPA's 50 Most Traded Stocks"
+output: html_notebook
+---
+Historical daily data for the 50 most traded stocks in B3 (IBOVESPA), including opening, high, low, and closing prices, as well as trading volume.
+
+Source: https://www.b3.com.br
+
+##Load series
+
+```{r}
+library(dalts)
+library(daltoolbox)
+library(harbinger)
+library(tspredit)
+
+## Load series ----------------------
+data(stocks)
+head(stocks$VALE3,5)
+```
+
+```{r}
+serie <- stocks$VALE3
+head(serie,5)
+```
+
+
+```{r}
+years <- serie$date
+values <- serie$close
+plot(years, values, type = "l", main = "Closing Price (VALE3)", ylab = "Closing Price (R$)", xlab = "Year")
+
+```
+
+```{r}
+# Create object ts_data with horizon = 1
+ts <- ts_data(values, sw = 1)
+
+# Separate Training and Test samples
+samp <- ts_sample(ts, test_size = 5)
+
+#  Input/output projection
+io_train <- ts_projection(samp$train)
+io_test <- ts_projection(samp$test)
+```
+
+```{r}
+# Create ARIMA and train
+model <- ts_arima()
+model <- fit(model, x = io_train$input, y = io_train$output)
+
+
+```
+
+```{r}
+# Predicting next 5 years
+prediction <- predict(model, x = io_test$input[1,], steps_ahead = 5)
+
+# Converting to vector
+pred <- as.vector(prediction)
+real <- as.vector(io_test$output)
+
+# Evaluate
+ev_test <- evaluate(model, real, pred)
+ev_test
+```
+

@@ -1,0 +1,67 @@
+---
+title: "FAOSTAT Temperature Change on Land"
+output: html_notebook
+---
+Statistics of surface temperature anomalies on land, based on NASA-GISS GISTEMP data.
+
+
+Source: https://data.giss.nasa.gov/gistemp/
+
+##Load series
+
+```{r}
+library(dalts)
+library(daltoolbox)
+library(harbinger)
+library(tspredit)
+
+## Load series ----------------------
+data(climate)
+head(climate,5)
+```
+
+```{r}
+serie <- climate$brazil_clima
+serie
+```
+
+
+```{r}
+years <- as.numeric(names(serie))
+values <- as.numeric(serie)
+plot(years, values, type = "l", main = "Surface temperature anomalies on Brazil", ylab = "Production", xlab = "Year")
+
+```
+```{r}
+# Create object ts_data with horizon = 1
+ts <- ts_data(values, sw = 1)
+
+# Separate Training and Test samples
+samp <- ts_sample(ts, test_size = 5)
+
+#  Input/output projection
+io_train <- ts_projection(samp$train)
+io_test <- ts_projection(samp$test)
+```
+
+```{r}
+# Create ARIMA and train
+model <- ts_arima()
+model <- fit(model, x = io_train$input, y = io_train$output)
+
+
+```
+
+```{r}
+# Predicting next 5 years
+prediction <- predict(model, x = io_test$input[1,], steps_ahead = 5)
+
+# Converting to vector
+pred <- as.vector(prediction)
+real <- as.vector(io_test$output)
+
+# Evaluate
+ev_test <- evaluate(model, real, pred)
+ev_test
+```
+
