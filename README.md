@@ -1,14 +1,54 @@
-# DALts
-O DALTS é um pacote desenvolvido para organizar, documentar e disponibilizar diversas bases de dados de séries temporais usadas em pesquisas e experimentos do Data Analytics Lab.
-O pacote facilita o acesso a conjuntos de dados  em um único repositório, promovendo reprodutibilidade, benchmarking e comparação de modelos preditivos.
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## Como usar
-Após instalação:
+# tspredbench: A Benchmark Time Series Dataset Collection for Prediction Models
+
+<!-- badges: start -->
+
+![GitHub Repo stars](https://github.com/cefet-rj-dal/tspredbench)
+<!-- badges: end -->
+
+`tspredbench`, developed by the Data Analytics Lab (DAL), is a curated repository of time series datasets designed to support the development, testing, and benchmarking of prediction models.  
+The package gathers datasets from diverse domains—such as bioenergy, climate, economy, and international competitions (M1–M4)—into a unified and structured format, promoting reproducibility and comparative evaluation of forecasting methods.
+
+While the datasets can be accessed through raw files, it is recommended to use them via this R package, following the usage guidelines provided below.
+
+------------------------------------------------------------------------
+
+## Dataset Description
+
+A full description of all datasets is available at:  
+<https://github.com/cefet-rj-dal/tspredbench/wiki>
+
+------------------------------------------------------------------------
+
+## Examples
+
+Usage examples can be found at:  
+<https://github.com/cefet-rj-dal/tspredbench/tree/main/examples/>
+
+Examples are organized by dataset and include visualizations and predictive modeling.
 
 ```r
-# Carregar uma base específica
+library(tspredbench)
+
+# Load a specific dataset
 data(bioenergy)
 
-# Visualizar os primeiros dados da série
+# View the first rows
 head(bioenergy)
+```
+
+------------------------------------------------------------------------
+
+## Installation
+
+You can install the published version of the tspredbench package from GitHub
+<https://github.com/cefet-rj-dal/united> with:
+
+``` r
+
+timeout <- options()$timeout
+options(timeout = 1200)
+devtools::install_github("cefet-rj-dal/tspredbench", upgrade = "never")
+options(timeout = timeout)
 ```
