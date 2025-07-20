@@ -5,7 +5,7 @@
 \alias{stocks}
 \title{IBOVESPA's 50 Most Traded Stocks}
 \format{
-A list of time series.
+A list of dataframes containing time series.
 }
 \source{
 \href{https://www.b3.com.br}{B3}

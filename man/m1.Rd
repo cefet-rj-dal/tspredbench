@@ -5,7 +5,7 @@
 \alias{m1}
 \title{M1 Competition Time Series}
 \format{
-A list of time series.
+A list of dataframes containing time series.
 }
 \source{
 \href{https://onlinelibrary.wiley.com/doi/10.1002/for.3980010202}{The accuracy of extrapolation (time series) methods: Results of a forecasting competition}

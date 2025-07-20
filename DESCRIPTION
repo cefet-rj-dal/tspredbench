@@ -1,5 +1,5 @@
-Package: dalts
-Title: DAL Time Series
+Package: tspredbench
+Title: A Benchmark Time Series Dataset Collection for Prediction Models
 Version: 1.0.707
 License: MIT + file LICENSE
 Authors@R: 
@@ -8,7 +8,8 @@ Authors@R:
     person(given = "Fernando", family = "Alexandrino", email = "fernando.alexandrino@aluno.cefet-rj.br", role = "aut"),
     person(given = "Lucas", family = "Calmon", email = "lucas.calmon@aluno.cefet-rj.br", role = "aut"),
     person(given = "Lucas", family = "Teixeira", email = "lucas.santos.16@aluno.cefet-rj.br", role = "aut"),
-    person(given = "Marcus", family = "Ferreira", email = "marcus.junior@aluno.cefet-rj.br", role = "aut")
+    person(given = "Marcus", family = "Ferreira", email = "marcus.junior@aluno.cefet-rj.br", role = "aut"),
+    person(given = "Rebecca", family = "Salles", email = "rebecca.pontes-salles@inria.fr", role = "aut")
   )
 Description: 
   Provides a collection of time series datasets for time series event analysis. 
@@ -21,5 +22,4 @@ Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.1.0)
 RoxygenNote: 7.3.2
 Imports: 
-  daltoolbox,
-  tspredit
+  daltoolbox

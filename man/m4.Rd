@@ -5,7 +5,7 @@
 \alias{m4}
 \title{M4 Competition Time Series}
 \format{
-A list of time series.
+A list of lists containing time series.
 }
 \source{
 \href{https://github.com/Mcompetitions/M4-methods}{M4 Competition - GitHub}

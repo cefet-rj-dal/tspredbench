@@ -3,7 +3,7 @@
 \docType{data}
 \name{gdp}
 \alias{gdp}
-\title{Gross Domestic Product and Agriculture Value Added (2013–2022)}
+\title{Gross Domestic Product and Agriculture Value Added}
 \format{
 list of time series.
 }

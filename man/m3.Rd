@@ -5,7 +5,7 @@
 \alias{m3}
 \title{M3 Competition Time Series}
 \format{
-A list of time series.
+A list of lists containing time series.
 }
 \source{
 \href{https://www.sciencedirect.com/science/article/abs/pii/S0169207000000571?via\%3Dihub}{The M3-Competition: results, conclusions and implications}

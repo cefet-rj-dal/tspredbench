@@ -3,7 +3,7 @@
 \docType{data}
 \name{pesticides}
 \alias{pesticides}
-\title{Pesticides Use Statistics (1990–2022)}
+\title{Pesticides Use Statistics}
 \format{
 A list of time series.
 }
