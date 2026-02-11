@@ -1,4 +1,4 @@
-library(tspredbench)
+library(tspredit)
 
 # 1) EUNITE.Loads
 data(EUNITE.Loads)
