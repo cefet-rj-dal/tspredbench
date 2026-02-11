@@ -1,0 +1,19 @@
+https://www.fao.org/faostat/en/#data/BE
+
+-----------------------------------------------
+Colunas:
+Area Code
+Area Code (M49)
+Area
+Item Code
+Item
+Element Code
+Element
+Unit
+Y1990 - Y2022
+
+Filtros:
+Area code = países...
+Item code = 6527 (Total Bioenergy)
+Element code: 5851 (Energy consumption) e 5852 (Energy production)
+-----------------------------------------------

@@ -1,0 +1,20 @@
+https://www.fao.org/faostat/en/#data/ET
+
+-----------------------------------------------
+Colunas:
+Area Code
+Area Code (M49)
+Area
+Months Code
+Months
+Element Code
+Element
+Element
+Unit
+Y1961 - Y2023
+
+Filtros:
+Area code = países...
+Element code = 7271 (Temperature change)
+Months code = 7020 (Meteorological year)
+-----------------------------------------------

@@ -1,0 +1,78 @@
+---
+title: "M1 Competition Time Series"
+output: html_notebook
+---
+This notebook demonstrates loading and visualizing time series from the first Makridakis forecasting competition (M1).
+We select a monthly subset and build a simple ARIMA forecast on a single series.
+
+Source: https://onlinelibrary.wiley.com/doi/10.1002/for.3980010202
+
+## Setup
+
+```{r}
+# Load required packages
+library(tspredbench)
+library(daltoolbox)
+library(harbinger)
+library(tspredit)
+```
+
+## Load M1 dataset
+
+```{r}
+# Load the consolidated M1 object (list with frequency buckets)
+data(m1)
+head(m1$monthly, 5)
+```
+
+## Select and prepare a series
+
+```{r}
+# Select the monthly data frame and extract a single row as a numeric series
+df <- m1$monthly
+head(df, 5)
+
+values <- as.numeric(df[2, ])           # choose the second series for illustration
+values <- na.omit(values)                # remove missing values if any
+points <- length(values)
+time <- 1:points
+```
+
+## Visualize the series
+
+```{r}
+plot(time, values, type = "l",
+     main = "M1 monthly series",
+     ylab = "Value", xlab = "Time index")
+```
+
+## Train/test split and supervised projection
+
+```{r}
+ts <- ts_data(values, sw = 1)
+samp <- ts_sample(ts, test_size = 5)
+io_train <- ts_projection(samp$train)
+io_test  <- ts_projection(samp$test)
+```
+
+## Fit ARIMA model
+
+```{r}
+model <- ts_arima()
+model <- fit(model, x = io_train$input, y = io_train$output)
+```
+
+## Forecast and evaluate
+
+```{r}
+prediction <- predict(model, x = io_test$input[1, ], steps_ahead = 5)
+pred <- as.vector(prediction)
+real <- as.vector(io_test$output)
+ev_test <- evaluate(model, real, pred)
+ev_test
+```
+
+## References
+
+- Makridakis, S., Wheelwright, S. C., & Hyndman, R. J. (1998). Forecasting: Methods and Applications.
+- Makridakis, S., et al. (1982). The accuracy of extrapolation (time series) methods: Results of a forecasting competition. Journal of Forecasting.

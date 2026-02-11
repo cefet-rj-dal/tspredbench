@@ -1,0 +1,77 @@
+---
+title: "FAOSTAT Fertilizers by Nutrient"
+output: html_notebook
+---
+This notebook demonstrates loading, visualizing, and forecasting FAOSTAT fertilizer nutrient series (N, P2O5, K2O).
+We will pick a country/nutrient series and fit a simple ARIMA model.
+
+Source: https://www.fao.org/faostat/en/#data/RFN
+
+## Setup
+
+```{r}
+# Load required packages
+library(tspredbench)
+library(daltoolbox)
+library(harbinger)
+library(tspredit)
+```
+
+## Load fertilizers dataset
+
+```{r}
+# Load the fertilizers list object and inspect
+data(fertilizers)
+head(fertilizers, 5)
+```
+
+## Select a country/nutrient series
+
+```{r}
+# Select Brazil nitrogen usage series (name pattern: <country>_<nutrient>)
+series <- fertilizers$brazil_n
+series
+```
+
+## Visualize the series
+
+```{r}
+# Convert named vector to numeric vectors for plotting
+years <- as.numeric(names(series))
+values <- as.numeric(series)
+
+plot(years, values, type = "l",
+     main = "Fertilizer use (N) – Brazil",
+     ylab = "Tonnes", xlab = "Year")
+```
+
+## Train/test split and supervised projection
+
+```{r}
+ts <- ts_data(values, sw = 1)              # 1-step lag supervised dataset
+samp <- ts_sample(ts, test_size = 5)       # hold out last 5 observations
+io_train <- ts_projection(samp$train)      # training inputs/outputs
+io_test  <- ts_projection(samp$test)       # test inputs/outputs
+```
+
+## Fit ARIMA model
+
+```{r}
+model <- ts_arima()                        # create ARIMA model
+model <- fit(model, x = io_train$input, y = io_train$output)
+```
+
+## Forecast and evaluate
+
+```{r}
+prediction <- predict(model, x = io_test$input[1, ], steps_ahead = 5)
+pred <- as.vector(prediction)
+real <- as.vector(io_test$output)
+
+ev_test <- evaluate(model, real, pred)     # error metrics
+ev_test
+```
+
+## References
+
+- FAOSTAT Fertilizers by Nutrient (RFN) – Domain methodology and documentation.

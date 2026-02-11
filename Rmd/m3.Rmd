@@ -1,0 +1,71 @@
+---
+title: "M3 Competition Time Series"
+output: html_notebook
+---
+This notebook demonstrates loading and visualizing time series from the third Makridakis forecasting competition (M3).
+We select a monthly series and build a simple ARIMA forecast.
+
+Source: https://www.sciencedirect.com/science/article/abs/pii/S0169207000000571
+
+## Setup
+
+```{r}
+# Load required packages
+library(tspredbench)
+library(daltoolbox)
+library(harbinger)
+library(tspredit)
+```
+
+## Load M3 dataset
+
+```{r}
+data(m3)
+head(m3$monthly, 5)
+```
+
+## Select and prepare a series
+
+```{r}
+series <- m3$monthly$M1111
+values <- as.numeric(series)
+time <- seq_along(values)
+```
+
+## Visualize the series
+
+```{r}
+plot(time, values, type = "l",
+     main = "M3 monthly series: M1111",
+     ylab = "Value", xlab = "Time index")
+```
+
+## Train/test split and supervised projection
+
+```{r}
+ts <- ts_data(values, sw = 1)
+samp <- ts_sample(ts, test_size = 5)
+io_train <- ts_projection(samp$train)
+io_test  <- ts_projection(samp$test)
+```
+
+## Fit ARIMA model
+
+```{r}
+model <- ts_arima()
+model <- fit(model, x = io_train$input, y = io_train$output)
+```
+
+## Forecast and evaluate
+
+```{r}
+prediction <- predict(model, x = io_test$input[1, ], steps_ahead = 5)
+pred <- as.vector(prediction)
+real <- as.vector(io_test$output)
+ev_test <- evaluate(model, real, pred)
+ev_test
+```
+
+## References
+
+- Makridakis, S., & Hibon, M. (2000). The M3-Competition: results, conclusions and implications. International Journal of Forecasting.
