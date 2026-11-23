@@ -54,6 +54,26 @@ detect_kind <- function(obj) {
   "unknown"
 }
 
+# Write the FULL dataset in a Python-native, gzip-compressed format (.csv.gz for
+# data.frame, .json.gz for list) so pytspredit's loadfulldata() can read it with pandas
+# + stdlib gzip (no rdata/pyarrow). Returns the file name.
+write_python_full <- function(obj, name, full_dir) {
+  kind <- detect_kind(obj)
+  if (kind == "dataframe") {
+    fn <- paste0(name, ".csv.gz")
+    con <- gzfile(file.path(full_dir, fn), "w")
+    on.exit(close(con), add = TRUE)
+    utils::write.csv(obj, con, row.names = FALSE)
+  } else {
+    fn <- paste0(name, ".json.gz")
+    con <- gzfile(file.path(full_dir, fn), "w")
+    on.exit(close(con), add = TRUE)
+    writeLines(jsonlite::toJSON(obj, dataframe = "rows", na = "null", null = "null",
+                                digits = NA, auto_unbox = FALSE), con)
+  }
+  fn
+}
+
 # Write one Python miniature (CSV or JSON) and return its manifest entry.
 write_python_mini <- function(obj, name, url, py_dir) {
   kind <- detect_kind(obj)
@@ -86,7 +106,9 @@ build_minidata <- function() {
   full_dir <- file.path(repo_root, "tspredit")
   mini_dir <- file.path(repo_root, "data")
   py_dir <- file.path(mini_dir, "python")
+  full_py_dir <- file.path(mini_dir, "python_full")
   base_url <- "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit"
+  base_full_url <- "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full"
 
   if (!dir.exists(full_dir)) {
     stop(sprintf("Full data directory not found: %s", full_dir))
@@ -96,6 +118,9 @@ build_minidata <- function() {
   }
   if (!dir.exists(py_dir)) {
     dir.create(py_dir, recursive = TRUE)
+  }
+  if (!dir.exists(full_py_dir)) {
+    dir.create(full_py_dir, recursive = TRUE)
   }
 
   files <- sort(list.files(full_dir, pattern = "\\.RData$", full.names = FALSE))
@@ -133,8 +158,13 @@ build_minidata <- function() {
     # Python miniature (same shrunk object)
     manifest[[obj_name]] <- write_python_mini(mini_obj, obj_name, url, py_dir)
 
-    cat(sprintf("[OK] %s -> %s + python/%s (obj: %s)\n",
-                full_path, mini_path, manifest[[obj_name]]$file, obj_name))
+    # Python-native FULL dataset (gzipped CSV/JSON) for loadfulldata()
+    full_file <- write_python_full(obj, obj_name, full_py_dir)
+    manifest[[obj_name]]$full_file <- full_file
+    manifest[[obj_name]]$full_url <- sprintf("%s/%s", base_full_url, full_file)
+
+    cat(sprintf("[OK] %s -> %s + python/%s + python_full/%s (obj: %s)\n",
+                full_path, mini_path, manifest[[obj_name]]$file, full_file, obj_name))
   }
 
   manifest_path <- file.path(py_dir, "manifest.json")

@@ -4,7 +4,9 @@
     "kind": "series_list",
     "file": "bioenergy.json",
     "keys": "usa_bio_consumption",
-    "lengths": 33
+    "lengths": 33,
+    "full_file": "bioenergy.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/bioenergy.json.gz"
   },
   "CATS": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/CATS.RData",
@@ -12,21 +14,27 @@
     "file": "CATS.csv",
     "nrow": 30,
     "ncol": 6,
-    "columns": ["V1", "V2", "V3", "V4", "V5", "split"]
+    "columns": ["V1", "V2", "V3", "V4", "V5", "split"],
+    "full_file": "CATS.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/CATS.csv.gz"
   },
   "climate": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/climate.RData",
     "kind": "series_list",
     "file": "climate.json",
     "keys": "usa_climate",
-    "lengths": 63
+    "lengths": 63,
+    "full_file": "climate.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/climate.json.gz"
   },
   "emissions": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/emissions.RData",
     "kind": "series_list",
     "file": "emissions.json",
     "keys": "usa_ch4",
-    "lengths": 61
+    "lengths": 61,
+    "full_file": "emissions.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/emissions.json.gz"
   },
   "EUNITE.Loads": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/EUNITE.Loads.RData",
@@ -34,7 +42,9 @@
     "file": "EUNITE.Loads.csv",
     "nrow": 30,
     "ncol": 49,
-    "columns": ["X00.30", "X01.00", "X01.30", "X02.00", "X02.30", "X03.00", "X03.30", "X04.00", "X04.30", "X05.00", "X05.30", "X06.00", "X06.30", "X07.00", "X07.30", "X08.00", "X08.30", "X09.00", "X09.30", "X10.00", "X10.30", "X11.00", "X11.30", "X12.00", "X12.30", "X13.00", "X13.30", "X14.00", "X14.30", "X15.00", "X15.30", "X16.00", "X16.30", "X17.00", "X17.30", "X18.00", "X18.30", "X19.00", "X19.30", "X20.00", "X20.30", "X21.00", "X21.30", "X22.00", "X22.30", "X23.00", "X23.30", "X24.00", "split"]
+    "columns": ["X00.30", "X01.00", "X01.30", "X02.00", "X02.30", "X03.00", "X03.30", "X04.00", "X04.30", "X05.00", "X05.30", "X06.00", "X06.30", "X07.00", "X07.30", "X08.00", "X08.30", "X09.00", "X09.30", "X10.00", "X10.30", "X11.00", "X11.30", "X12.00", "X12.30", "X13.00", "X13.30", "X14.00", "X14.30", "X15.00", "X15.30", "X16.00", "X16.30", "X17.00", "X17.30", "X18.00", "X18.30", "X19.00", "X19.30", "X20.00", "X20.30", "X21.00", "X21.30", "X22.00", "X22.30", "X23.00", "X23.30", "X24.00", "split"],
+    "full_file": "EUNITE.Loads.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/EUNITE.Loads.csv.gz"
   },
   "EUNITE.Reg": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/EUNITE.Reg.RData",
@@ -42,7 +52,9 @@
     "file": "EUNITE.Reg.csv",
     "nrow": 30,
     "ncol": 3,
-    "columns": ["Holiday", "Weekday", "split"]
+    "columns": ["Holiday", "Weekday", "split"],
+    "full_file": "EUNITE.Reg.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/EUNITE.Reg.csv.gz"
   },
   "EUNITE.Temp": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/EUNITE.Temp.RData",
@@ -50,21 +62,27 @@
     "file": "EUNITE.Temp.csv",
     "nrow": 30,
     "ncol": 2,
-    "columns": ["Temperature", "split"]
+    "columns": ["Temperature", "split"],
+    "full_file": "EUNITE.Temp.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/EUNITE.Temp.csv.gz"
   },
   "fertilizers": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/fertilizers.RData",
     "kind": "series_list",
     "file": "fertilizers.json",
     "keys": "usa_n",
-    "lengths": 62
+    "lengths": 62,
+    "full_file": "fertilizers.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/fertilizers.json.gz"
   },
   "gdp": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/gdp.RData",
     "kind": "series_list",
     "file": "gdp.json",
     "keys": "usa_gdp",
-    "lengths": 54
+    "lengths": 54,
+    "full_file": "gdp.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/gdp.json.gz"
   },
   "ipeadata.d": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/ipeadata.d.RData",
@@ -72,7 +90,9 @@
     "file": "ipeadata.d.csv",
     "nrow": 30,
     "ncol": 13,
-    "columns": ["GM366_IBVSP366", "GM366_ERC366", "GM366_EREURO366", "GM366_ERPV366", "GM366_ERV366", "GM366_TJOVER366", "GM366_TJTR366", "SECEX366_MVTOT366", "SECEX366_XVTOT366", "JPM366_EMBI366", "BM366_TJOVER366", "GM366_TJOVERV366", "split"]
+    "columns": ["GM366_IBVSP366", "GM366_ERC366", "GM366_EREURO366", "GM366_ERPV366", "GM366_ERV366", "GM366_TJOVER366", "GM366_TJTR366", "SECEX366_MVTOT366", "SECEX366_XVTOT366", "JPM366_EMBI366", "BM366_TJOVER366", "GM366_TJOVERV366", "split"],
+    "full_file": "ipeadata.d.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/ipeadata.d.csv.gz"
   },
   "ipeadata.m": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/ipeadata.m.RData",
@@ -80,7 +100,9 @@
     "file": "ipeadata.m.csv",
     "nrow": 30,
     "ncol": 24,
-    "columns": ["BM12_ERC12", "BM12_ERV12", "IGP12_IGPDI12", "FUNCEX12_MDPT12", "FUNCEX12_XPT12", "PRECOS12_INPC12", "PRECOS12_INPCBR12", "PRECOS12_IPCA12", "SEADE12_TDAGSP12", "SEADE12_TDOTSP12", "SEADE12_TDOPSP12", "GAC12_SALMINRE12", "IGP12_IGPM12", "PRECOS12_IPCAG12", "IGP12_IGPDIG12", "IGP12_IGPMG12", "IGP12_IGPOGG12", "PRECOS12_IPCA15G12", "BM12_PIB12", "MTE12_SALMIN12", "BM12_TJOVER12", "SEADE12_TDTGSP12", "PMEN12_TD12", "split"]
+    "columns": ["BM12_ERC12", "BM12_ERV12", "IGP12_IGPDI12", "FUNCEX12_MDPT12", "FUNCEX12_XPT12", "PRECOS12_INPC12", "PRECOS12_INPCBR12", "PRECOS12_IPCA12", "SEADE12_TDAGSP12", "SEADE12_TDOTSP12", "SEADE12_TDOPSP12", "GAC12_SALMINRE12", "IGP12_IGPM12", "PRECOS12_IPCAG12", "IGP12_IGPDIG12", "IGP12_IGPMG12", "IGP12_IGPOGG12", "PRECOS12_IPCA15G12", "BM12_PIB12", "MTE12_SALMIN12", "BM12_TJOVER12", "SEADE12_TDTGSP12", "PMEN12_TD12", "split"],
+    "full_file": "ipeadata.m.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/ipeadata.m.csv.gz"
   },
   "m1": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/m1.RData",
@@ -89,7 +111,9 @@
     "keys": "monthly",
     "shapes": {
       "monthly": [10, 150]
-    }
+    },
+    "full_file": "m1.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/m1.json.gz"
   },
   "m3": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/m3.RData",
@@ -98,7 +122,9 @@
     "keys": "monthly",
     "subkeys": {
       "monthly": ["M1", "M160", "M318", "M477", "M635", "M794", "M952", "M1111", "M1269", "M1428"]
-    }
+    },
+    "full_file": "m3.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/m3.json.gz"
   },
   "m4": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/m4.RData",
@@ -107,7 +133,9 @@
     "keys": "hourly",
     "subkeys": {
       "hourly": ["H1", "H47", "H93", "H139", "H185", "H230", "H276", "H322", "H368", "H414"]
-    }
+    },
+    "full_file": "m4.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/m4.json.gz"
   },
   "NN3": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/NN3.RData",
@@ -115,7 +143,9 @@
     "file": "NN3.csv",
     "nrow": 30,
     "ncol": 112,
-    "columns": ["NN3.001", "NN3.002", "NN3.003", "NN3.004", "NN3.005", "NN3.006", "NN3.007", "NN3.008", "NN3.009", "NN3.010", "NN3.011", "NN3.012", "NN3.013", "NN3.014", "NN3.015", "NN3.016", "NN3.017", "NN3.018", "NN3.019", "NN3.020", "NN3.021", "NN3.022", "NN3.023", "NN3.024", "NN3.025", "NN3.026", "NN3.027", "NN3.028", "NN3.029", "NN3.030", "NN3.031", "NN3.032", "NN3.033", "NN3.034", "NN3.035", "NN3.036", "NN3.037", "NN3.038", "NN3.039", "NN3.040", "NN3.041", "NN3.042", "NN3.043", "NN3.044", "NN3.045", "NN3.046", "NN3.047", "NN3.048", "NN3.049", "NN3.050", "NN3.051", "NN3.052", "NN3.053", "NN3.054", "NN3.055", "NN3.056", "NN3.057", "NN3.058", "NN3.059", "NN3.060", "NN3.061", "NN3.062", "NN3.063", "NN3.064", "NN3.065", "NN3.066", "NN3.067", "NN3.068", "NN3.069", "NN3.070", "NN3.071", "NN3.072", "NN3.073", "NN3.074", "NN3.075", "NN3.076", "NN3.077", "NN3.078", "NN3.079", "NN3.080", "NN3.081", "NN3.082", "NN3.083", "NN3.084", "NN3.085", "NN3.086", "NN3.087", "NN3.088", "NN3.089", "NN3.090", "NN3.091", "NN3.092", "NN3.093", "NN3.094", "NN3.095", "NN3.096", "NN3.097", "NN3.098", "NN3.099", "NN3.100", "NN3_101", "NN3_102", "NN3_103", "NN3_104", "NN3_105", "NN3_106", "NN3_107", "NN3_108", "NN3_109", "NN3_110", "NN3_111", "split"]
+    "columns": ["NN3.001", "NN3.002", "NN3.003", "NN3.004", "NN3.005", "NN3.006", "NN3.007", "NN3.008", "NN3.009", "NN3.010", "NN3.011", "NN3.012", "NN3.013", "NN3.014", "NN3.015", "NN3.016", "NN3.017", "NN3.018", "NN3.019", "NN3.020", "NN3.021", "NN3.022", "NN3.023", "NN3.024", "NN3.025", "NN3.026", "NN3.027", "NN3.028", "NN3.029", "NN3.030", "NN3.031", "NN3.032", "NN3.033", "NN3.034", "NN3.035", "NN3.036", "NN3.037", "NN3.038", "NN3.039", "NN3.040", "NN3.041", "NN3.042", "NN3.043", "NN3.044", "NN3.045", "NN3.046", "NN3.047", "NN3.048", "NN3.049", "NN3.050", "NN3.051", "NN3.052", "NN3.053", "NN3.054", "NN3.055", "NN3.056", "NN3.057", "NN3.058", "NN3.059", "NN3.060", "NN3.061", "NN3.062", "NN3.063", "NN3.064", "NN3.065", "NN3.066", "NN3.067", "NN3.068", "NN3.069", "NN3.070", "NN3.071", "NN3.072", "NN3.073", "NN3.074", "NN3.075", "NN3.076", "NN3.077", "NN3.078", "NN3.079", "NN3.080", "NN3.081", "NN3.082", "NN3.083", "NN3.084", "NN3.085", "NN3.086", "NN3.087", "NN3.088", "NN3.089", "NN3.090", "NN3.091", "NN3.092", "NN3.093", "NN3.094", "NN3.095", "NN3.096", "NN3.097", "NN3.098", "NN3.099", "NN3.100", "NN3_101", "NN3_102", "NN3_103", "NN3_104", "NN3_105", "NN3_106", "NN3_107", "NN3_108", "NN3_109", "NN3_110", "NN3_111", "split"],
+    "full_file": "NN3.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/NN3.csv.gz"
   },
   "NN5": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/NN5.RData",
@@ -123,14 +153,18 @@
     "file": "NN5.csv",
     "nrow": 30,
     "ncol": 112,
-    "columns": ["NN5.001", "NN5.002", "NN5.003", "NN5.004", "NN5.005", "NN5.006", "NN5.007", "NN5.008", "NN5.009", "NN5.010", "NN5.011", "NN5.012", "NN5.013", "NN5.014", "NN5.015", "NN5.016", "NN5.017", "NN5.018", "NN5.019", "NN5.020", "NN5.021", "NN5.022", "NN5.023", "NN5.024", "NN5.025", "NN5.026", "NN5.027", "NN5.028", "NN5.029", "NN5.030", "NN5.031", "NN5.032", "NN5.033", "NN5.034", "NN5.035", "NN5.036", "NN5.037", "NN5.038", "NN5.039", "NN5.040", "NN5.041", "NN5.042", "NN5.043", "NN5.044", "NN5.045", "NN5.046", "NN5.047", "NN5.048", "NN5.049", "NN5.050", "NN5.051", "NN5.052", "NN5.053", "NN5.054", "NN5.055", "NN5.056", "NN5.057", "NN5.058", "NN5.059", "NN5.060", "NN5.061", "NN5.062", "NN5.063", "NN5.064", "NN5.065", "NN5.066", "NN5.067", "NN5.068", "NN5.069", "NN5.070", "NN5.071", "NN5.072", "NN5.073", "NN5.074", "NN5.075", "NN5.076", "NN5.077", "NN5.078", "NN5.079", "NN5.080", "NN5.081", "NN5.082", "NN5.083", "NN5.084", "NN5.085", "NN5.086", "NN5.087", "NN5.088", "NN5.089", "NN5.090", "NN5.091", "NN5.092", "NN5.093", "NN5.094", "NN5.095", "NN5.096", "NN5.097", "NN5.098", "NN5.099", "NN5.100", "NN5.101", "NN5.102", "NN5.103", "NN5.104", "NN5.105", "NN5.106", "NN5.107", "NN5.108", "NN5.109", "NN5.110", "NN5.111", "split"]
+    "columns": ["NN5.001", "NN5.002", "NN5.003", "NN5.004", "NN5.005", "NN5.006", "NN5.007", "NN5.008", "NN5.009", "NN5.010", "NN5.011", "NN5.012", "NN5.013", "NN5.014", "NN5.015", "NN5.016", "NN5.017", "NN5.018", "NN5.019", "NN5.020", "NN5.021", "NN5.022", "NN5.023", "NN5.024", "NN5.025", "NN5.026", "NN5.027", "NN5.028", "NN5.029", "NN5.030", "NN5.031", "NN5.032", "NN5.033", "NN5.034", "NN5.035", "NN5.036", "NN5.037", "NN5.038", "NN5.039", "NN5.040", "NN5.041", "NN5.042", "NN5.043", "NN5.044", "NN5.045", "NN5.046", "NN5.047", "NN5.048", "NN5.049", "NN5.050", "NN5.051", "NN5.052", "NN5.053", "NN5.054", "NN5.055", "NN5.056", "NN5.057", "NN5.058", "NN5.059", "NN5.060", "NN5.061", "NN5.062", "NN5.063", "NN5.064", "NN5.065", "NN5.066", "NN5.067", "NN5.068", "NN5.069", "NN5.070", "NN5.071", "NN5.072", "NN5.073", "NN5.074", "NN5.075", "NN5.076", "NN5.077", "NN5.078", "NN5.079", "NN5.080", "NN5.081", "NN5.082", "NN5.083", "NN5.084", "NN5.085", "NN5.086", "NN5.087", "NN5.088", "NN5.089", "NN5.090", "NN5.091", "NN5.092", "NN5.093", "NN5.094", "NN5.095", "NN5.096", "NN5.097", "NN5.098", "NN5.099", "NN5.100", "NN5.101", "NN5.102", "NN5.103", "NN5.104", "NN5.105", "NN5.106", "NN5.107", "NN5.108", "NN5.109", "NN5.110", "NN5.111", "split"],
+    "full_file": "NN5.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/NN5.csv.gz"
   },
   "pesticides": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/pesticides.RData",
     "kind": "series_list",
     "file": "pesticides.json",
     "keys": "india_pesticides",
-    "lengths": 33
+    "lengths": 33,
+    "full_file": "pesticides.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/pesticides.json.gz"
   },
   "SantaFe.A": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/SantaFe.A.RData",
@@ -138,7 +172,9 @@
     "file": "SantaFe.A.csv",
     "nrow": 30,
     "ncol": 2,
-    "columns": ["V1", "split"]
+    "columns": ["V1", "split"],
+    "full_file": "SantaFe.A.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/SantaFe.A.csv.gz"
   },
   "SantaFe.D": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/SantaFe.D.RData",
@@ -146,7 +182,9 @@
     "file": "SantaFe.D.csv",
     "nrow": 30,
     "ncol": 2,
-    "columns": ["V1", "split"]
+    "columns": ["V1", "split"],
+    "full_file": "SantaFe.D.csv.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/SantaFe.D.csv.gz"
   },
   "stocks": {
     "url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/tspredit/stocks.RData",
@@ -155,6 +193,8 @@
     "keys": "VALE3",
     "shapes": {
       "VALE3": [30, 6]
-    }
+    },
+    "full_file": "stocks.json.gz",
+    "full_url": "https://raw.githubusercontent.com/cefet-rj-dal/tspredbench/refs/heads/main/data/python_full/stocks.json.gz"
   }
 }
